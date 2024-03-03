@@ -1,0 +1,15 @@
+{
+    "configurations": [
+        
+        {
+            "name": "Run Unit Tests",
+            "type": "gradle",
+            "workingDir": "$PROJECT_DIR$",
+            "tasks": [":composeApp:testDebugUnitTest"],
+            "args": [""],
+            "initScripts": {
+                "flmapper": "ext.mapPath = { path -> null }"
+            }
+        }
+    ]
+}

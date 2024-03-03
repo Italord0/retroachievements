@@ -1,5 +1,3 @@
-import org.jetbrains.compose.ExperimentalComposeLibrary
-
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidApplication)
@@ -79,6 +77,9 @@ kotlin {
             //koin
             implementation(libs.koin.compose)
         }
+        commonTest.dependencies {
+            implementation(libs.kotlin.test)
+        }
     }
 }
 
@@ -115,4 +116,3 @@ android {
         debugImplementation(libs.compose.ui.tooling)
     }
 }
-
