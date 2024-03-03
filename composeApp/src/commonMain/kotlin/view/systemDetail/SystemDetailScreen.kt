@@ -2,12 +2,12 @@ package view.systemDetail
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -15,35 +15,46 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
+import cafe.adriel.voyager.navigator.LocalNavigator
+import cafe.adriel.voyager.navigator.currentOrThrow
+import data.model.System
 import dev.icerock.moko.mvvm.compose.getViewModel
 import dev.icerock.moko.mvvm.compose.viewModelFactory
 import view.ScreenState
 import view.components.GameCard
+import view.components.Toolbar
 
-data class SystemDetailScreen(val systemId: Int) : Screen {
+data class SystemDetailScreen(val system: System) : Screen {
     @Composable
     override fun Content() {
 
         val viewModel: SystemDetailViewModel = getViewModel(Unit, viewModelFactory { SystemDetailViewModel() })
         val state: SystemDetailUIState by viewModel.uiState.collectAsState()
+        val navigator = LocalNavigator.currentOrThrow
 
         LaunchedEffect(Unit) {
-            viewModel.fetchGames(systemId)
+            viewModel.fetchGames(system.id)
         }
 
         when (state.screenState) {
             ScreenState.SUCCESS -> {
-                LazyVerticalGrid(
+                Column(
                     modifier = Modifier
                         .fillMaxSize()
-                        .background(MaterialTheme.colors.background),
-                    columns = GridCells.Adaptive(minSize = 128.dp),
-                    verticalArrangement = Arrangement.spacedBy(8.dp),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                        .background(MaterialTheme.colors.background)
                 ) {
-                    items(state.games) { game ->
-                        GameCard(game) {
-                            println(it)
+                    Toolbar(title = system.name, enableBackButton = true, onBackPressed = { navigator.pop() })
+                    LazyVerticalGrid(
+                        modifier = Modifier
+                            .fillMaxSize(),
+                        columns = GridCells.Adaptive(minSize = 128.dp),
+                        verticalArrangement = Arrangement.spacedBy(8.dp),
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        items(state.games) { game ->
+                            GameCard(game) {
+                                println(it)
+                            }
                         }
                     }
                 }

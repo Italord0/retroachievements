@@ -45,7 +45,7 @@ class SystemsScreen : Screen {
                 ) {
                     items(state.systems) { system ->
                         SystemCard(system) {
-                            navigator.push(SystemDetailScreen(systemId = it))
+                            navigator.push(SystemDetailScreen(system = system))
                         }
                     }
                 }

@@ -15,6 +15,7 @@ import data.RetroachievementsAPI.IMAGES_URL
 import data.model.Game
 import io.kamel.image.KamelImage
 import io.kamel.image.asyncPainterResource
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun GameCard(game: Game, onClick: (Int) -> Unit) {
@@ -45,4 +46,10 @@ fun GameCard(game: Game, onClick: (Int) -> Unit) {
             )
         }
     }
+}
+
+@Preview
+@Composable
+fun GameCardPreview(){
+    Text("Preview")
 }

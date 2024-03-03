@@ -17,12 +17,12 @@ import io.kamel.image.KamelImage
 import io.kamel.image.asyncPainterResource
 
 @Composable
-fun SystemCard(system: System, onClick: (Int) -> Unit) {
+fun SystemCard(system: System, onClick: (System) -> Unit) {
     Card(
         modifier = Modifier
             .height(120.dp)
             .width(30.dp)
-            .clickable { onClick(system.id) }
+            .clickable { onClick(system) }
     ) {
         Column {
             KamelImage(
