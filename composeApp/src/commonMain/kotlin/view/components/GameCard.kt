@@ -11,17 +11,16 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import data.RetroachievementsAPI.IMAGES_URL
 import data.model.Game
 import io.kamel.image.KamelImage
 import io.kamel.image.asyncPainterResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
+import util.Constants.IMAGES_URL
 
 @Composable
 fun GameCard(game: Game, onClick: (Int) -> Unit) {
     Card(
         modifier = Modifier
-            .height(120.dp)
+            .height(160.dp)
             .width(30.dp)
             .clickable { onClick(game.id) }
     ) {
@@ -37,19 +36,24 @@ fun GameCard(game: Game, onClick: (Int) -> Unit) {
             Text(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .fillMaxHeight()
+                    .padding(top = 8.dp)
                     .wrapContentHeight(align = Alignment.CenterVertically),
                 text = game.title,
                 maxLines = 2,
                 textAlign = TextAlign.Center,
                 style = TextStyle(fontSize = 18.sp)
             )
+            Spacer(modifier = Modifier.weight(1.0f))
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp)
+                    .wrapContentHeight(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(text = "🏆 ${game.numAchievements}")
+                Text(text = "⭐ ${game.points}")
+            }
         }
     }
-}
-
-@Preview
-@Composable
-fun GameCardPreview(){
-    Text("Preview")
 }

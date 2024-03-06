@@ -6,25 +6,25 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Game(
     @SerialName(value = "Title")
-    val title: String,
+    val title: String = "",
     @SerialName(value = "ID")
-    val id: Int,
+    val id: Int = 0,
     @SerialName(value = "ConsoleName")
-    val consoleName: String,
+    val consoleName: String = "",
     @SerialName(value = "ConsoleID")
-    val consoleId: Int,
+    val consoleId: Int = 0,
     @SerialName(value = "ImageIcon")
-    val imageIcon: String,
+    val imageIcon: String = "",
     @SerialName(value = "NumAchievements")
-    val numAchievements: Int,
+    val numAchievements: Int = 0,
     @SerialName(value = "NumLeaderboards")
-    val numLeaderboards: Int,
+    val numLeaderboards: Int = 0,
     @SerialName(value = "Points")
-    val points: Int,
+    val points: Int = 0,
     @SerialName(value = "DateModified")
-    val dateModified: String,
+    val dateModified: String = "",
     @SerialName(value = "ForumTopicID")
-    val forumTopicID: Int,
+    val forumTopicID: Int = 0,
     @SerialName(value = "Hashes")
-    val hashes: List<String>
+    val hashes: List<String> = emptyList()
 )

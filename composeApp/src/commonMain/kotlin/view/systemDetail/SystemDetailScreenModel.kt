@@ -1,28 +1,27 @@
 package view.systemDetail
 
+import cafe.adriel.voyager.core.model.ScreenModel
+import cafe.adriel.voyager.core.model.screenModelScope
 import data.RetroachievementsAPI
-import data.model.Game
-import dev.icerock.moko.mvvm.viewmodel.ViewModel
-import io.ktor.client.call.*
-import io.ktor.client.request.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import view.ScreenState
 
-class SystemDetailViewModel : ViewModel() {
+class SystemDetailScreenModel(
+    private val retroachievementsAPI: RetroachievementsAPI
+) : ScreenModel {
     private val _uiState: MutableStateFlow<SystemDetailUIState> = MutableStateFlow(SystemDetailUIState())
     val uiState = _uiState.asStateFlow()
 
-    fun fetchGames(consoleId: Int) {
-        viewModelScope.launch {
+    fun fetchGames(systemId: Int) {
+        screenModelScope.launch {
+            _uiState.value = SystemDetailUIState(
+                screenState = ScreenState.LOADING
+            )
             try {
-                val games = RetroachievementsAPI.client
-                    .get("API/API_GetGameList.php") {
-                        parameter("i", consoleId)
-                        parameter("f", 1)
-                        parameter("h", 1)
-                    }.body<List<Game>>()
+                val games = retroachievementsAPI.getAllGames(systemId)
+
                 _uiState.value = SystemDetailUIState(
                     screenState = ScreenState.SUCCESS,
                     games = games

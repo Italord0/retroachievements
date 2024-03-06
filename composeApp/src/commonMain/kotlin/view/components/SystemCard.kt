@@ -11,10 +11,10 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import data.RetroachievementsAPI.ASSETS_URL
 import data.model.System
 import io.kamel.image.KamelImage
 import io.kamel.image.asyncPainterResource
+import util.Constants.ASSETS_URL
 
 @Composable
 fun SystemCard(system: System, onClick: (System) -> Unit) {

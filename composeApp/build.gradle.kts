@@ -69,6 +69,8 @@ kotlin {
             //kamel
             implementation(libs.kamel)
 
+            //implementation(libs.coil)
+
             //voyager
             implementation(libs.voyager)
             implementation(libs.voyager.screenModel)
@@ -76,6 +78,9 @@ kotlin {
 
             //koin
             implementation(libs.koin.compose)
+
+            //shimmer
+            implementation(libs.shimmer)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

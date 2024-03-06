@@ -18,8 +18,10 @@ kotlinx-coroutines = "1.7.3"
 ktor = "2.3.6"
 moko-mvvm = "0.16.1"
 kamel = "0.8.3"
+coil = "2.6.0"
 voyager = "1.0.0"
 koin = "1.1.0"
+shimmer = "1.2.0"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -45,7 +47,10 @@ kamel = { module = "media.kamel:kamel-image", version.ref = "kamel" }
 voyager = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "voyager" }
 voyager-screenModel = { module = "cafe.adriel.voyager:voyager-screenmodel", version.ref = "voyager" }
 voyager-koin = { module = "cafe.adriel.voyager:voyager-koin", version.ref = "voyager" }
-koin-compose = {group="io.insert-koin", name = "koin-compose", version.ref = "koin"}
+koin-compose = { group = "io.insert-koin", name = "koin-compose", version.ref = "koin" }
+#coil = { group = "io.coil-kt.coil3", name = "coil", version.ref = "coil" }
+#coil-network = { group = "io.coil-kt.coil3", name = "coil-network-ktor", version.ref = "coil" }
+shimmer = { group = "com.valentinilk.shimmer", name = "compose-shimmer", version.ref = "shimmer" }
 
 [plugins]
 kotlinxSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
